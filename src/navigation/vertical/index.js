@@ -8,14 +8,14 @@ export default [
     navLink: '/home'
   },
   {
-    id: 'desarrolladores',
+    id: 'table',
     title: 'Desarrolladores',
-    navLink: '/table'
+    navLink: '/home:table'
   },
   {
     id: 'agregar',
     title: 'Agregar',
-    navLink: '/agregar'
+    navLink: '/home:table/agregar'
   }
 ]
 

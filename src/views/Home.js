@@ -1,8 +1,10 @@
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
     <div>
+      <Link to='/home:table'>Ir a la tabla</Link>
       <Card>
         <CardHeader>
           <CardTitle>Kick start your project 🚀</CardTitle>

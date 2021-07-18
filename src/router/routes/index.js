@@ -13,11 +13,11 @@ const Routes = [
     component: lazy(() => import('../../views/Home'))
   },
   {
-    path: '/agregar',
+    path: '/home:table/agregar',
     component: lazy(() => import('../../views/Agregar'))
   },
   {
-    path: '/table',
+    path: '/home:table',
     component: lazy(() => import('../../views/DataTable'))
   },
   {
