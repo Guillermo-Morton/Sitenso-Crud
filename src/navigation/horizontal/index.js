@@ -2,19 +2,19 @@ import { Home } from 'react-feather'
 
 export default [
   {
-    id: 'home',
-    title: 'Home',
+    id: 'inicio',
+    title: 'Inicio',
     icon: <Home size={20} />,
-    navLink: '/home'
+    navLink: '/inicio'
   },
   {
     id: 'table',
     title: 'Desarrolladores',
-    navLink: '/home:table'
+    navLink: '/inicio:table'
   },
   {
     id: 'agregar',
     title: 'Agregar',
-    navLink: '/home:table/agregar'
+    navLink: '/inicio:table/agregar'
   }
 ]
