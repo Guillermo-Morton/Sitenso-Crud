@@ -65,7 +65,7 @@ const columnas = [
     sortable: true
   },
   {
-    name: 'ACTIONS',
+    name: 'ACCIONES',
     allowOverflow: true,
     right:true,
     cell: row => {
@@ -93,7 +93,6 @@ const columnas = [
 ]
 const TablaConBotones = () => {
   // ** States
-  const [modal, setModal] = useState(false)
   const [currentPage, setCurrentPage] = useState(0)
 
   // ** Function to handle Pagination
@@ -143,7 +142,7 @@ const TablaConBotones = () => {
   return (
     <Fragment>
       <Card>
-        <CardHeader className='flex-md-row flex-column align-md-items-center align-items-start border-bottom'>
+        <CardHeader className='flex-md-row flex-column align-items-center border-bottom'>
           <CardTitle tag='h4'>Tabla de desarrolladores</CardTitle>
           <div className='d-flex mt-md-0 mt-1'>
             <Link to='/inicio:table/agregar' className='ml-2 btn btn-primary'>
@@ -152,7 +151,7 @@ const TablaConBotones = () => {
             </Link>
           </div>
         </CardHeader>
-        <CardBody className='px-5 pt-5 pb-3'>
+        <CardBody className='dataTable'>
         <DataTable
           noHeader
           pagination

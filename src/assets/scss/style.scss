@@ -25,3 +25,12 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .brand-logo{
 	display: none;
 }
+.dataTable{
+	padding: 4.3rem 3rem 0!important;
+	@media (max-width: 767px){
+		padding: 3rem 1rem 0!important;
+	}
+	@media (max-width: 440px){
+		padding: 2rem 0.3rem 0!important;
+	}
+}

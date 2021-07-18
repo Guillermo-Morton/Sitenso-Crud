@@ -1,13 +1,14 @@
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Input, Label, Form, FormGroup, Button } from 'reactstrap'
+import { Card, CardHeader, CardBody, CardTitle, Input, Label, Form, FormGroup, Button } from 'reactstrap'
+
+import { Link } from 'react-router-dom'
 
 const Agregar = () => {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className='border-bottom'>
         <CardTitle>Agregar un nuevo desarrollador</CardTitle>
       </CardHeader>
-      <hr />
-      <CardBody className='px-4'>
+      <CardBody className='px-4 pb-3 my-2'>
         <Form className='row'>
           <div className='formGroup col-lg-6 col-12'>
             <FormGroup className='my-3'>
@@ -42,7 +43,7 @@ const Agregar = () => {
             </FormGroup>
           </div>
           <div className='d-flex justify-content-between px-4 col-12'>
-          <Button outline color='primary'>Cancelar</Button>
+          <Link to='/inicio:table' className='btn btn-outline-primary'>Cancelar</Link>
           <Button color='primary'>Agregar</Button>
           </div>
         </Form>
