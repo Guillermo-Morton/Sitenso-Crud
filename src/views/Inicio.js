@@ -6,7 +6,7 @@ const Inicio = () => {
     <div>
       <Card>
         <CardHeader>
-          <CardTitle>Administracion de desarrolladores</CardTitle>
+          <CardTitle>Administración de desarrolladores</CardTitle>
         </CardHeader>
         <CardBody>
           <CardText>En este sistema usted podrá agregar, modificar y eliminar desarrolladores de la base de datos en Sitenso.</CardText>

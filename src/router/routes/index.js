@@ -18,7 +18,7 @@ const Routes = [
   },
   {
     path: '/inicio:table',
-    component: lazy(() => import('../../views/Tabla'))
+    component: lazy(() => import('../../views/TablaConBotones'))
   },
   {
     path: '/login',

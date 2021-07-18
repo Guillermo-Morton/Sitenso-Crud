@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { NavBar, NavLink } from './NavElements'
 import { useLocation } from "react-router-dom"
+import { ChevronRight } from 'react-feather'
 
 // ** Horizontal Menu Array
 import navigation from '@src/navigation/horizontal'
@@ -18,7 +19,7 @@ const NavB = () => {
                         ${location.pathname === item.navLink ? 'activeStyle' : ''}`}
             key={item.id}
             to={item.navLink}>{item.icon}
-            <span className='px-1'> {'>'}</span>{item.title}
+            <span className='px-1'> <ChevronRight size={20} /></span>{item.title}
           </NavLink>
         ))}
       </NavBar>
