@@ -36,7 +36,7 @@ const TablaConBotones = () => {
   const dispatch = useDispatch()
 
   const loadData = () => {
-    dispatch(devActions.fetchProductsPending())
+    dispatch(devActions.fetchDevsPending())
     axios.get(URL)
       .then(function (response) {
         // handle success
@@ -44,11 +44,11 @@ const TablaConBotones = () => {
         if (response.error) {
           throw (response.error)
         }
-        dispatch(devActions.fetchProductsSuccess(response.data))
+        dispatch(devActions.fetchDevsSuccess(response.data))
       })
       .catch(function (error) {
         // handle error
-        dispatch(devActions.fetchProductsError(error))
+        dispatch(devActions.fetchDevsError(error))
         console.log(error)
       })
   }

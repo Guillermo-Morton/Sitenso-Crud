@@ -7,13 +7,15 @@ import navbar from './navbar'
 import layout from './layout'
 import devs from './table/devs'
 import inputs from './table/inputs'
+import selects from './selects/selects'
 
 const rootReducer = combineReducers({
   auth,
   navbar,
   layout,
   devs,
-  inputs
+  inputs,
+  selects
 })
 
 export default rootReducer

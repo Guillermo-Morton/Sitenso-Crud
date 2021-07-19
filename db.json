@@ -30,17 +30,46 @@
     },
     {
       "nombre": "Rocio Pereyra",
-      "profesion": "Desarrolladora Frontend",
       "puesto": "Frontend",
-      "tecnologia": "JavaScript",
+      "profesion": "FrontEnd developer",
+      "tecnologia": "React",
       "id": 6
+    }
+  ],
+  "puestos": [
+    {
+      "puesto": "Frontend",
+      "id": "GADSAD"
     },
     {
-      "nombre": "Jorge Campo",
       "puesto": "Backend",
-      "profesion": "Programador",
+      "id": "FASDSF"
+    },
+    {
+      "puesto": "ScrumMaster",
+      "id": "VXZSAD"
+    },
+    {
+      "puesto": "FullStack",
+      "id": "VAGAWD"
+    }
+  ],
+  "tecnologias": [
+    {
+      "tecnologia": "React",
+      "id": "ASFCXV"
+    },
+    {
+      "tecnologia": "Laravel",
+      "id": "MUWJFP"
+    },
+    {
+      "tecnologia": "VueJs",
+      "id": "PLQSMD"
+    },
+    {
       "tecnologia": "Angular",
-      "id": 7
+      "id": "ZTQOSN"
     }
   ]
 }

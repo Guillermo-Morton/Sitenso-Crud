@@ -15,34 +15,18 @@ export default (state = initialState, action) => {
         devs
       }
     }
-    case actionTypes.REMOVE_DEV: {
-      const { index, dev } = action
-      const devs = state.devs
-      notes[index] = dev
-      return {
-        devs
-      }
-    }
-    case actionTypes.UPDATE_DEV: {
-      const { index } = action
-      const devs = state.devs
-      delete devs[index]
-      return {
-        devs
-      }
-    }
-    case actionTypes.FETCH_PRODUCTS_PENDING:
+    case actionTypes.FETCH_DEVS_PENDING:
       return {
         ...state,
         pending: true
       }
-    case actionTypes.FETCH_PRODUCTS_SUCCESS:
+    case actionTypes.FETCH_DEVS_SUCCESS:
       return {
         ...state,
         pending: false,
         devs: action.devs
       }
-    case actionTypes.FETCH_PRODUCTS_ERROR:
+    case actionTypes.FETCH_DEVS_ERROR:
       return {
         ...state,
         pending: false,
@@ -52,6 +36,6 @@ export default (state = initialState, action) => {
       return state
   }
 }
-export const getProducts = state => state.devs
-export const getProductsPending = state => state.pending
-export const getProductsError = state => state.error
+export const getDevs = state => state.devs
+export const getDevsPending = state => state.pending
+export const getDevsError = state => state.error

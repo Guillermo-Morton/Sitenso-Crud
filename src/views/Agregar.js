@@ -1,21 +1,27 @@
 import { Card, CardHeader, CardBody, CardTitle, Input, Label, Form, FormGroup, Button } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 import devActions from '../redux/actions/table/devActions'
 import inputActions from '../redux/actions/table/inputActions'
+import dataActions from '../redux/actions/selects/dataActions'
 
 import { Link } from 'react-router-dom'
 
+const axios = require('axios')
+const URL = process.env.REACT_APP_API_URL
+const URL2 = process.env.REACT_APP_API_URL2
+const URL3 = process.env.REACT_APP_API_URL3
 
 const Agregar = () => {
-  const devs = useSelector(state => state.devs.devs)
   const dev = useSelector(state => state.inputs)
   const nombre = useSelector(state => state.inputs.nombre)
   const puesto = useSelector(state => state.inputs.puesto)
   const profesion = useSelector(state => state.inputs.profesion)
   const tecnologia = useSelector(state => state.inputs.tecnologia)
+  const puestos = useSelector(state => state.selects.jobs)
+  const tecnologias = useSelector(state => state.selects.techs)
   const dispatch = useDispatch()
-  const axios = require('axios')
-  const URL = process.env.REACT_APP_API_URL
+
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(devActions.addDev(
@@ -27,15 +33,45 @@ const Agregar = () => {
       profesion: dev.profesion,
       tecnologia: dev.tecnologia
     })
-    .then(function (response) {
-      console.log(response)
-    })
     .catch(function (error) {
       console.log(error)
     })
     dispatch(inputActions.resetInput())
-    console.log(devs)
    }
+   const loadData = () => {
+    dispatch(dataActions.fetchJobsPending())
+    axios.get(URL2)
+      .then(function (response) {
+        // handle success
+        if (response.error) {
+          throw (response.error)
+        }
+        dispatch(dataActions.fetchJobsSuccess(response.data))
+      })
+      .catch(function (error) {
+        // handle error
+        dispatch(dataActions.fetchJobsError(error))
+        console.log(error)
+      })
+
+    dispatch(dataActions.fetchTechsPending())
+    axios.get(URL3)
+      .then(function (response) {
+        // handle success
+        if (response.error) {
+          throw (response.error)
+        }
+        dispatch(dataActions.fetchTechsSuccess(response.data))
+      })
+      .catch(function (error) {
+        // handle error
+        dispatch(dataActions.fetchTechsError(error))
+        console.log(error)
+      })
+  }
+  useEffect(() => {
+    loadData()
+  }, [])
   return (
     <Card>
       <CardHeader className='border-bottom'>
@@ -61,10 +97,9 @@ const Agregar = () => {
               onChange={e => dispatch(inputActions.setInputJob(e.target.value))}
               >
                 <option defaultValue value=''>Selecionar una opción</option>
-                <option>Frontend</option>
-                <option>Backend</option>
-                <option>ScrumMaster</option>
-                <option>FullStack</option>
+                {puestos.map((puesto) => (
+                  <option key={puesto.id}>{puesto.puesto}</option>
+                ))}
               </Input>
             </FormGroup>
           </div>
@@ -86,15 +121,14 @@ const Agregar = () => {
               onChange={e => dispatch(inputActions.setInputTech(e.target.value))}
               >
                 <option defaultValue value=''>Selecionar una opción</option>
-                <option>React</option>
-                <option>Laravel</option>
-                <option>VueJs</option>
-                <option>Angular</option>
+                {tecnologias.map((tecnologia) => (
+                  <option key={tecnologia.id}>{tecnologia.tecnologia}</option>
+                ))}
               </Input>
             </FormGroup>
           </div>
           <div className='d-flex justify-content-between px-4 col-12'>
-          <Link to='/inicio:table' className='btn btn-outline-primary'>Cancelar</Link>
+          <Link onClick={() => dispatch(inputActions.resetInput())} to='/inicio:table' className='btn btn-outline-primary'>Cancelar</Link>
           <Button type='submit' color='primary'>Agregar</Button>
           </div>
         </Form>
