@@ -2,8 +2,8 @@
 import { Fragment, useState, forwardRef } from 'react'
 
 import { Link } from 'react-router-dom'
-// ** Add New Modal Component
-// import AddNewModal from './AddNewModal'
+
+// import { fetchAllDevs } from '../redux/actions/tabla/dev.actions'
 
 // ** Third Party Components
 import ReactPaginate from 'react-paginate'
@@ -92,9 +92,9 @@ const columnas = [
   }
 ]
 const TablaConBotones = () => {
+ 
   // ** States
   const [currentPage, setCurrentPage] = useState(0)
-
   // ** Function to handle Pagination
   const handlePagination = page => {
     setCurrentPage(page.selected)

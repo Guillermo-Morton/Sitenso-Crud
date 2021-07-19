@@ -15,6 +15,6 @@ export const NavLink = styled(Link)`
         }
     }
     &.hidden{
-        visibility: hidden;
+        display:none;
     }
 `

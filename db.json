@@ -1,0 +1,46 @@
+{
+  "sitenso": [
+    {
+      "nombre": "Mario Campbell",
+      "profesion": "Diseñador grafico",
+      "puesto":"Frontend",
+      "tecnologia":"React",
+      "id":1
+    },
+    {
+      "nombre": "Nicolás Berdú",
+      "profesion": "Ingeniero en Sistemas",
+      "puesto":"Backend",
+      "tecnologia":"Laravel",
+      "id":2
+    },
+    {
+      "nombre": "Carlos Soria",
+      "profesion": "Ingeniero en Sistemas",
+      "puesto":"Fullstack",
+      "tecnologia":"Nodejs",
+      "id":3
+    },
+    {
+      "nombre": "Jorge Ritti",
+      "profesion": "Licenciado en programacion",
+      "puesto":"Frontend",
+      "tecnologia":"Angular",
+      "id":4
+    },
+    {
+      "nombre": "Guillermo Morton",
+      "profesion": "Desarrollador Fullstack",
+      "puesto":"Fullstack",
+      "tecnologia":"React",
+      "id":5
+    },
+    {
+      "nombre": "Rocio Pereyra",
+      "profesion": "Desarrolladora Frontend",
+      "puesto":"Frontend",
+      "tecnologia":"JavaScript",
+      "id":6
+    }
+  ]
+}
