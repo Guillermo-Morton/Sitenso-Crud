@@ -1,20 +1,23 @@
 import actionTypes from "./actionTypes"
 
 export default {
-    setInputName: name => ({
+    setInputName: nombre => ({
         type: actionTypes.SET_INPUT_NAME,
-        name
+        nombre
     }),
-    setInputCareer: career => ({
+    setInputCareer: profesion => ({
         type: actionTypes.SET_INPUT_CAREER,
-        career
+        profesion
     }),
-    setInputTech: tech => ({
+    setInputTech: tecnologia => ({
         type: actionTypes.SET_INPUT_TECH,
-        tech
+        tecnologia
     }),
-    setInputJob: job => ({
+    setInputJob: puesto => ({
         type: actionTypes.SET_INPUT_JOB,
-        job
+        puesto
+    }),
+    resetInput: () => ({
+        type: actionTypes.RESET_INPUT
     })
 }

@@ -8,22 +8,41 @@ import { Link } from 'react-router-dom'
 
 const Agregar = () => {
   const devs = useSelector(state => state.devs.devs)
-  const nombre = useSelector(state => state.inputs.name)
-  const puesto = useSelector(state => state.inputs.job)
-  const profesion = useSelector(state => state.inputs.career)
-  const tecnologia = useSelector(state => state.inputs.tech)
+  const dev = useSelector(state => state.inputs)
+  const nombre = useSelector(state => state.inputs.nombre)
+  const puesto = useSelector(state => state.inputs.puesto)
+  const profesion = useSelector(state => state.inputs.profesion)
+  const tecnologia = useSelector(state => state.inputs.tecnologia)
   const dispatch = useDispatch()
-  console.log(nombre)
-  console.log(puesto)
-  console.log(profesion)
-  console.log(tecnologia)
+  const axios = require('axios')
+  const URL = process.env.REACT_APP_API_URL
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(devActions.addDev(
+      dev
+    ))
+    axios.post(URL, {
+      nombre: dev.nombre,
+      puesto: dev.puesto,
+      profesion: dev.profesion,
+      tecnologia: dev.tecnologia
+    })
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+    dispatch(inputActions.resetInput())
+    console.log(devs)
+   }
   return (
     <Card>
       <CardHeader className='border-bottom'>
         <CardTitle>Agregar un nuevo desarrollador</CardTitle>
       </CardHeader>
       <CardBody className='px-4 pb-3 my-2'>
-        <Form className='row'>
+        <Form onSubmit={handleSubmit} className='row'>
           <div className='formGroup col-lg-6 col-12'>
             <FormGroup className='my-3'>
               <Label>Nombre</Label>
@@ -41,7 +60,7 @@ const Agregar = () => {
               value={puesto}
               onChange={e => dispatch(inputActions.setInputJob(e.target.value))}
               >
-                <option value="" disabled selected>Selecionar una opción</option>
+                <option defaultValue value=''>Selecionar una opción</option>
                 <option>Frontend</option>
                 <option>Backend</option>
                 <option>ScrumMaster</option>
@@ -66,7 +85,7 @@ const Agregar = () => {
               value={tecnologia}
               onChange={e => dispatch(inputActions.setInputTech(e.target.value))}
               >
-                <option value="" disabled selected>Selecionar una opción</option>
+                <option defaultValue value=''>Selecionar una opción</option>
                 <option>React</option>
                 <option>Laravel</option>
                 <option>VueJs</option>
@@ -76,7 +95,7 @@ const Agregar = () => {
           </div>
           <div className='d-flex justify-content-between px-4 col-12'>
           <Link to='/inicio:table' className='btn btn-outline-primary'>Cancelar</Link>
-          <Button color='primary'>Agregar</Button>
+          <Button type='submit' color='primary'>Agregar</Button>
           </div>
         </Form>
       </CardBody>

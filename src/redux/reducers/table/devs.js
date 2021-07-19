@@ -1,8 +1,9 @@
-import { notDeepStrictEqual } from 'assert'
 import actionTypes from '../../actions/table/actionTypes'
 
 const initialState = {
-  devs: []
+  pending: false,
+  devs: [],
+  error: null
 }
 
 export default (state = initialState, action) => {
@@ -30,13 +31,27 @@ export default (state = initialState, action) => {
         devs
       }
     }
+    case actionTypes.FETCH_PRODUCTS_PENDING:
+      return {
+        ...state,
+        pending: true
+      }
+    case actionTypes.FETCH_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        devs: action.devs
+      }
+    case actionTypes.FETCH_PRODUCTS_ERROR:
+      return {
+        ...state,
+        pending: false,
+        error: action.error
+      }
     default:
       return state
   }
 }
-
-// if(devs.length > 0){
-//     const latestDev = devs[devs.length-1]
-//     const newDev = action.dev
-//     dev.push(newDev)
-//    }
+export const getProducts = state => state.devs
+export const getProductsPending = state => state.pending
+export const getProductsError = state => state.error
