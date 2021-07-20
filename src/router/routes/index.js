@@ -17,6 +17,10 @@ const Routes = [
     component: lazy(() => import('../../views/Agregar'))
   },
   {
+    path: '/inicio:table/editar/:id',
+    component: lazy(() => import('../../views/Editar'))
+  },
+  {
     path: '/inicio:table',
     component: lazy(() => import('../../views/TablaConBotones'))
   },

@@ -2,15 +2,15 @@
   "sitenso": [
     {
       "nombre": "Mario Campbell",
-      "profesion": "Diseñador grafico",
       "puesto": "Frontend",
-      "tecnologia": "React",
+      "profesion": "Diseñador grafico",
+      "tecnologia": "JavaScript",
       "id": 1
     },
     {
       "nombre": "Nicolás Berdú",
-      "profesion": "Ingeniero en Sistemas",
       "puesto": "Backend",
+      "profesion": "Ingeniero en Sistemas",
       "tecnologia": "Laravel",
       "id": 2
     },
@@ -34,6 +34,13 @@
       "profesion": "FrontEnd developer",
       "tecnologia": "React",
       "id": 6
+    },
+    {
+      "nombre": "Sapopepe",
+      "puesto": "Backend",
+      "profesion": "SDaD",
+      "tecnologia": "Laravel",
+      "id": 7
     }
   ],
   "puestos": [
@@ -70,6 +77,10 @@
     {
       "tecnologia": "Angular",
       "id": "ZTQOSN"
+    },
+    {
+      "tecnologia": "JavaScript",
+      "id": "HASDSA"
     }
   ]
 }

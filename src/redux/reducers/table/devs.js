@@ -3,16 +3,16 @@ import actionTypes from '../../actions/table/actionTypes'
 const initialState = {
   pending: false,
   devs: [],
+  editingDev: {},
   error: null
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_DEV: {
-      const devs = state.devs
-      devs.push(action.dev)
+    case actionTypes.EDIT_DEV: {
       return {
-        devs
+        ...state,
+        editingDev: action.dev
       }
     }
     case actionTypes.FETCH_DEVS_PENDING:

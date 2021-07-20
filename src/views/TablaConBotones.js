@@ -1,7 +1,7 @@
 // ** React Imports
-import { Fragment, useState, forwardRef, useEffect } from 'react'
+import { Fragment, useState, forwardRef, useEffect, useRef } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link,  withRouter } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import devActions from '../redux/actions/table/devActions'
@@ -29,7 +29,7 @@ const BootstrapCheckbox = forwardRef(({ onClick, ...rest }, ref) => (
   </div>
 ))
 
-const TablaConBotones = () => {
+const TablaConBotones = (props) => {
   const URL = process.env.REACT_APP_API_URL
   const axios = require('axios')
   const devs = useSelector(state => state.devs)
@@ -40,7 +40,6 @@ const TablaConBotones = () => {
     axios.get(URL)
       .then(function (response) {
         // handle success
-        console.log(response)
         if (response.error) {
           throw (response.error)
         }
@@ -94,7 +93,7 @@ const TablaConBotones = () => {
               <DropdownMenu right>
                 <DropdownItem>
                   <Edit size={15} />
-                  <span className='align-middle ml-50'>Editar</span>
+                  <span onClick={() => props.history.push(`/inicio:table/editar/${row.id}`) } className='align-middle ml-50'>Editar</span>
                 </DropdownItem>
                 <DropdownItem>
                   <Trash size={15} />
@@ -192,4 +191,4 @@ const TablaConBotones = () => {
   )
 }
 
-export default TablaConBotones
+export default withRouter(TablaConBotones)

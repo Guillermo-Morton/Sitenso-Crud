@@ -1,8 +1,8 @@
 import actionTypes from "./actionTypes"
 
 export default {
-    addDev: (dev) => ({
-        type: actionTypes.ADD_DEV,
+    editDev: (dev) => ({
+        type: actionTypes.EDIT_DEV,
         dev
     }),
 

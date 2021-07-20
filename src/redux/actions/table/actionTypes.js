@@ -1,5 +1,5 @@
 export default {
-    ADD_DEV: 'ADD_DEV',
+    EDIT_DEV: 'EDIT_DEV',
 
     SET_INPUT_NAME: 'SET_INPUT_NAME',
     SET_INPUT_JOB: 'SET_INPUT_JOB',
