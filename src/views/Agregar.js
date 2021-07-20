@@ -4,14 +4,24 @@ import { useEffect } from 'react'
 import inputActions from '../redux/actions/table/inputActions'
 import dataActions from '../redux/actions/selects/dataActions'
 
-import { Link } from 'react-router-dom'
+import Swal from "sweetalert2"
+
+const customSwal = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-primary mx-1 px-3',
+    cancelButton: 'btn btn-outline-primary mx-1'
+  },
+  buttonsStyling: false
+})
+
+import { Link, withRouter } from 'react-router-dom'
 
 const axios = require('axios')
 const URL = process.env.REACT_APP_API_URL
 const URL2 = process.env.REACT_APP_API_URL2
 const URL3 = process.env.REACT_APP_API_URL3
 
-const Agregar = () => {
+const Agregar = (props) => {
   const dev = useSelector(state => state.inputs)
   const nombre = useSelector(state => state.inputs.nombre)
   const puesto = useSelector(state => state.inputs.puesto)
@@ -31,6 +41,22 @@ const Agregar = () => {
     })
     .catch(function (error) {
       console.log(error)
+      customSwal.fire(
+        "Opps!",
+        "Intente de nuevo mas tarde",
+        "error"
+        )
+        props.history.push('/inicio:tabla')
+    })
+    .then((response) => {
+      if (response.status === 201) {
+        customSwal.fire(
+          "Desarrollador agregado",
+          "Se cargaron correctamente los datos",
+          "success"
+          )
+          props.history.push('/inicio:tabla')
+      }
     })
     dispatch(inputActions.resetInput())
    }
@@ -67,6 +93,7 @@ const Agregar = () => {
   }
   useEffect(() => {
     loadData()
+    dispatch(inputActions.resetInput())
   }, [])
   return (
     <Card>
@@ -133,4 +160,4 @@ const Agregar = () => {
   )
 }
 
-export default Agregar
+export default withRouter(Agregar)

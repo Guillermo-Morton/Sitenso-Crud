@@ -2,9 +2,9 @@
   "sitenso": [
     {
       "nombre": "Mario Campbell",
-      "puesto": "Frontend",
+      "puesto": "ScrumMaster",
       "profesion": "Diseñador grafico",
-      "tecnologia": "JavaScript",
+      "tecnologia": "Laravel",
       "id": 1
     },
     {
@@ -32,15 +32,8 @@
       "nombre": "Rocio Pereyra",
       "puesto": "Frontend",
       "profesion": "FrontEnd developer",
-      "tecnologia": "React",
+      "tecnologia": "JavaScript",
       "id": 6
-    },
-    {
-      "nombre": "Sapopepe",
-      "puesto": "Backend",
-      "profesion": "SDaD",
-      "tecnologia": "Laravel",
-      "id": 7
     }
   ],
   "puestos": [

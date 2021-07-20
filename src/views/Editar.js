@@ -5,8 +5,17 @@ import devActions from '../redux/actions/table/devActions'
 import inputActions from '../redux/actions/table/inputActions'
 import dataActions from '../redux/actions/selects/dataActions'
 
-import { Link, useParams } from 'react-router-dom'
-// import { useParams, withRouter, useLocation } from "react-router";
+import Swal from "sweetalert2"
+
+const customSwal = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-primary mx-1 px-3',
+    cancelButton: 'btn btn-outline-primary mx-1'
+  },
+  buttonsStyling: false
+})
+
+import { Link, useParams, withRouter } from 'react-router-dom'
 
 const axios = require('axios')
 const URL = process.env.REACT_APP_API_URL
@@ -14,7 +23,7 @@ const URL2 = process.env.REACT_APP_API_URL2
 const URL3 = process.env.REACT_APP_API_URL3
 
 
-const Editar = () => {
+const Editar = (props) => {
   const { id } = useParams()
   const devAeditar = useSelector(state => state.devs.editingDev)
   const dev = useSelector(state => state.inputs)
@@ -31,6 +40,22 @@ const Editar = () => {
     })
       .catch(function (error) {
         console.log(error)
+        customSwal.fire(
+          "Opps!",
+          "Intente de nuevo mas tarde",
+          "error"
+          )
+          props.history.push('/inicio:tabla')
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          customSwal.fire(
+            "Desarrollador editado",
+            "Se modificaron los datos",
+            "success"
+            )
+            props.history.push('/inicio:tabla')
+        }
       })
     dispatch(inputActions.resetInput())
   }
@@ -65,22 +90,22 @@ const Editar = () => {
         console.log(error)
       })
 
-
-  }
-  useEffect(() => {
-    loadData()
-    axios.get(`${URL}/${id}`)
+      axios.get(`${URL}/${id}`)
       .then(function (response) {
         // handle success
         dispatch(devActions.editDev(
           response.data
         ))
-
       })
       .catch(function (error) {
         // handle error
         console.log(error)
       })
+
+
+  }
+  useEffect(() => {
+    loadData()
   }, [])
   useEffect(() => {
     dispatch(inputActions.setInputName(devAeditar.nombre))
@@ -111,7 +136,7 @@ const Editar = () => {
                 type='select'
                 onChange={e => dispatch(inputActions.setInputJob(e.target.value))}
               >
-                <option value={devAeditar.puesto}>Sin modificar</option>
+                <option value={devAeditar.puesto}>{`Sin modificar (${devAeditar.puesto})`}</option>
                 {puestos.map((puesto) => (
                   <option key={puesto.id}>{puesto.puesto}</option>
                 ))}
@@ -134,7 +159,7 @@ const Editar = () => {
                 type='select'
                 onChange={e => dispatch(inputActions.setInputTech(e.target.value))}
               >
-                <option value={devAeditar.tecnologia}>Selecionar una opción</option>
+                <option value={devAeditar.tecnologia}>{`Sin modificar (${devAeditar.tecnologia})`}</option>
                 {tecnologias.map((tecnologia) => (
                   <option key={tecnologia.id}>{tecnologia.tecnologia}</option>
                 ))}
@@ -151,4 +176,4 @@ const Editar = () => {
   )
 }
 
-export default Editar
+export default withRouter(Editar)

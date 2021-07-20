@@ -26,14 +26,52 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	display: none;
 }
 .dataTable{
-	padding: 4.3rem 3rem 0!important;
+	padding: 4.3rem 3rem 1rem 3rem!important;
 	@media (max-width: 767px){
 		padding: 3rem 1rem 0!important;
 	}
 	@media (max-width: 440px){
 		padding: 2rem 0.3rem 0!important;
 	}
+
 }
-.animate__animated.animate__fadeInLeft, .animate__fadeOutRight {
+.animate__animated.animate__fadeInLeft, .animate__fadeOutRight, .animate__fadeInDown, .animate__fadeOutUp {
 	--animate-duration: 0.25s;
-  }
+}
+.animate__fadeIn{
+	--animate-duration: 0.5s;
+}
+.app-content{
+	min-height: 94vh!important;
+}
+.clearfix{
+	@media (max-width: 470px){
+		text-align: center;
+	}
+}
+.pagination{
+	@media (max-width: 440px){
+		justify-content: center!important;
+		padding: 0!important;
+	}
+}
+.card-title{
+	@media (max-width: 470px){
+		text-align: center;
+	}
+}
+.btnEliminar{
+	position: absolute;
+	bottom: 1rem;
+	padding: 0.8rem;
+	@media (max-width: 440px){
+		position: relative;
+		margin: 1rem 1rem 0 ;
+		justify-self: center;
+	}
+}
+.btnEliminarWrapper{
+	@media (max-width: 440px){
+		justify-content: center;
+	}
+}

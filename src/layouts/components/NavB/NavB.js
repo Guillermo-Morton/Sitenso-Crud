@@ -19,10 +19,10 @@ const NavB = () => {
         {navigation.map((item) => (
           <NavLink 
             onClick={ () => setIsHidden(false)}
-            className={`animate__animated  ${location.pathname.includes(item.id) ? 'animate__fadeInLeft' : `btn-link disabled ${isHidden === true ? 'hidden' : 'animate__fadeOutRight'}`} ${location.pathname === item.navLink ? 'activeStyle btn-link disabled' : ''}`}
+            className={`animate__animated  ${location.pathname.includes(item.id) || (location.pathname.includes('editar') && item.id === 'agregar') ? `animate__fadeInLeft ${item.id === 'agregar' ? 'activeStyle btn-link disabled' : ''}` : `btn-link disabled ${isHidden === true ? 'hidden' : 'animate__fadeOutRight'}`} ${location.pathname === item.navLink ? 'activeStyle btn-link disabled' : ''}`}
             key={item.id}
             to={item.navLink}>{item.icon}
-            <span className='px-1'> <ChevronRight size={20} /></span>{item.title}
+            <span className='px-1'> <ChevronRight size={20} /></span>{item.title === 'Agregar' && location.pathname.includes('editar') ? 'Editar' : item.title}
           </NavLink>
         ))}
       </NavBar>
