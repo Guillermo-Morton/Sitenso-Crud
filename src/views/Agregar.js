@@ -117,7 +117,7 @@ const Agregar = (props) => {
               <Label>Nombre</Label>
               <Input
                 type='text'
-                className={completarDatos && nombre.length === 0 ? 'is-invalid' : ''}
+                className={completarDatos && nombre.length === 0 ? 'is-invalid' : nombre.length > 0 ? 'is-valid' : ''}
                 placeholder='Ej: Augusto Peréz'
                 value={nombre}
                 maxlength="35"
@@ -137,7 +137,7 @@ const Agregar = (props) => {
               <Label>Puesto</Label>
               <Input
                 type='select'
-                className={completarDatos && puesto.length === 0 ? 'is-invalid' : ''}
+                className={completarDatos && puesto.length === 0 ? 'is-invalid' : puesto.length > 0 ? 'is-valid' : '' }
                 value={puesto}
                 onChange={e => dispatch(inputActions.setInputJob(e.target.value))}
               >
@@ -159,7 +159,7 @@ const Agregar = (props) => {
               <Label>Profesión</Label>
               <Input
                 type='text'
-                className={completarDatos && profesion.length === 0 ? 'is-invalid' : ''}
+                className={completarDatos && profesion.length === 0 ? 'is-invalid' : profesion.length > 0 ? 'is-valid' : ''}
                 placeholder='Científico de datos'
                 value={profesion}
                 maxlength="35"
@@ -179,7 +179,7 @@ const Agregar = (props) => {
               <Label>Tecnología</Label>
               <Input
                 type='select'
-                className={completarDatos && tecnologia.length === 0 ? 'is-invalid' : ''}
+                className={completarDatos && tecnologia.length === 0 ? 'is-invalid' : tecnologia.length > 0 ? 'is-valid' : ''}
                 value={tecnologia}
                 onChange={e => dispatch(inputActions.setInputTech(e.target.value))}
               >
