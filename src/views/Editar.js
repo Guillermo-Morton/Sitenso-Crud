@@ -1,6 +1,6 @@
-import { Card, CardHeader, CardBody, CardTitle, Input, Label, Form, FormGroup, Button } from 'reactstrap'
+import { Card, CardHeader, CardBody, CardTitle, Input, Label, Form, FormGroup, Button, Alert } from 'reactstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import devActions from '../redux/actions/table/devActions'
 import inputActions from '../redux/actions/table/inputActions'
 import dataActions from '../redux/actions/selects/dataActions'
@@ -30,34 +30,46 @@ const Editar = (props) => {
   const puestos = useSelector(state => state.selects.jobs)
   const tecnologias = useSelector(state => state.selects.techs)
   const dispatch = useDispatch()
+  const [completarDatos, setCompletarDatos] = useState(false)
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.put(`${URL}/${id}`, {
-      nombre: dev.nombre,
-      puesto: dev.puesto,
-      profesion: dev.profesion,
-      tecnologia: dev.tecnologia
-    })
-      .catch(function (error) {
-        console.log(error)
-        customSwal.fire(
-          "Opps!",
-          "Intente de nuevo mas tarde",
-          "error"
+    if (
+      dev.nombre !== ''
+      && dev.puesto !== ''
+      && dev.profesion !== ''
+      && dev.tecnologia !== ''
+    ) {
+      setCompletarDatos(false)
+      axios.put(`${URL}/${id}`, {
+        nombre: dev.nombre,
+        puesto: dev.puesto,
+        profesion: dev.profesion,
+        tecnologia: dev.tecnologia
+      })
+        .catch(function (error) {
+          console.log(error)
+          customSwal.fire(
+            "Opps!",
+            "Intente de nuevo mas tarde",
+            "error"
           )
           props.history.push('/inicio:tabla')
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          customSwal.fire(
-            "Desarrollador editado",
-            "Se modificaron los datos",
-            "success"
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            customSwal.fire(
+              "Desarrollador editado",
+              "Se modificaron los datos",
+              "success"
             )
             props.history.push('/inicio:tabla')
-        }
-      })
-    dispatch(inputActions.resetInput())
+          }
+        })
+      dispatch(inputActions.resetInput())
+    } else {
+      setCompletarDatos(true)
+    }
+
   }
   const loadData = () => {
     dispatch(dataActions.fetchJobsPending())
@@ -90,7 +102,7 @@ const Editar = (props) => {
         console.log(error)
       })
 
-      axios.get(`${URL}/${id}`)
+    axios.get(`${URL}/${id}`)
       .then(function (response) {
         // handle success
         dispatch(devActions.editDev(
@@ -125,10 +137,22 @@ const Editar = (props) => {
               <Label>Nombre</Label>
               <Input
                 type='text'
+                className={completarDatos && dev.nombre.length === 0 ? 'is-invalid' : ''}
                 placeholder='Ej: Augusto Peréz'
                 defaultValue={devAeditar.nombre}
-                onChange={e => dispatch(inputActions.setInputName(e.target.value))}
+                value={dev.nombre}
+                maxlength="35"
+                onChange={e => dispatch(inputActions.setInputName(dev.nombre && dev.nombre.length > 35 ? e.target.value.slice(0, 35) : e.target.value))}
               ></Input>
+              {
+              dev.nombre && dev.nombre.length === 35 ? <Alert
+                className='pl-1 animate__animated animate__fadeInDown'
+                color="primary">
+                Máximo 35 caracteres
+              </Alert> : completarDatos && dev.nombre.length === 0 ? <Alert
+                className='pl-1 animate__animated animate__fadeInDown'
+                color="danger">Este campo es obligatorio</Alert> : ''
+              }
             </FormGroup>
             <FormGroup className='my-3'>
               <Label>Puesto</Label>
@@ -147,11 +171,23 @@ const Editar = (props) => {
             <FormGroup className='my-3'>
               <Label>Profesión</Label>
               <Input
+                className={completarDatos && dev.profesion.length === 0 ? 'is-invalid' : ''}
                 type='text'
                 placeholder='Científico de datos'
                 defaultValue={devAeditar.profesion}
-                onChange={e => dispatch(inputActions.setInputCareer(e.target.value))}
+                value={dev.profesion}
+                maxlength="35"
+                onChange={e => dispatch(inputActions.setInputCareer(dev.profesion.length > 35 ? e.target.value.slice(0, 35) : e.target.value))}
               ></Input>
+               {
+              dev.profesion && dev.profesion.length === 35 ? <Alert
+                className='pl-1 animate__animated animate__fadeInDown'
+                color="primary">
+                Máximo 35 caracteres
+              </Alert> : completarDatos && dev.profesion.length === 0 ? <Alert
+                className='pl-1 animate__animated animate__fadeInDown'
+                color="danger">Este campo es obligatorio</Alert> : ''
+              }
             </FormGroup>
             <FormGroup className='my-3'>
               <Label>Tecnología</Label>

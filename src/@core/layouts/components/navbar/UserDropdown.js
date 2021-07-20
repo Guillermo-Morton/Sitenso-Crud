@@ -48,7 +48,7 @@ const UserDropdown = () => {
       <DropdownMenu right>
         <DropdownItem tag={Link} to='/login' onClick={() => dispatch(handleLogout())}>
           <Power size={14} className='mr-75' />
-          <span className='align-middle'>Logout</span>
+          <span className='align-middle'>Cerrar sesión</span>
         </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>

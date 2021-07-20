@@ -122,27 +122,32 @@ const TablaConBotones = () => {
     {
       name: 'NOMBRE',
       selector: 'nombre',
-      sortable: true
+      sortable: true,
+      width: '21.5%'
     },
     {
       name: 'PROFESIÓN',
       selector: 'profesion',
-      sortable: true
+      sortable: true,
+      width: '21.5%'
     },
     {
       name: 'PUESTO',
       selector: 'puesto',
-      sortable: true
+      sortable: true,
+      width: '21.5%'
     },
     {
       name: 'TECNOLOGÍA',
       selector: 'tecnologia',
-      sortable: true
+      sortable: true,
+      width: '21.5%'
     },
     {
       name: 'ACCIONES',
       allowOverflow: true,
-      right: true,
+      center:true,
+      width: '10%',
       cell: row => {
         return (
           <div className='d-flex'>
@@ -211,7 +216,13 @@ const TablaConBotones = () => {
   const customStyles = {
     headCells: {
       style: {
-        background: '#F3F2F7'
+        background: '#F3F2F7',
+        padding:'0 3rem'
+      }
+    },
+    cells: {
+      style: { // override the cell padding for data cells
+        padding:'0 3rem'
       }
     }
   }
