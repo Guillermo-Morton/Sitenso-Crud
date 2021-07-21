@@ -64,7 +64,6 @@ const VerticalNavMenuLink = ({
       setActiveItem(currentActiveItem)
       const arr = searchParents(navigation, currentURL)
       setGroupActive([...arr])
-      console.log(item)
     }
   }, [location])
 

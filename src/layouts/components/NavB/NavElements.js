@@ -10,11 +10,8 @@ export const NavLink = styled(Link)`
     color: $primary;
     display:flex;
     align-items:center;
-    &.activeStyle{
+    &.active{
             color:grey;
         }
-    }
-    &.hidden{
-        display:none;
     }
 `

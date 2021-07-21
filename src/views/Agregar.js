@@ -129,7 +129,7 @@ const Agregar = (props) => {
                 className={completarDatos && nombre.length === 0 ? 'is-invalid' : nombre.length > 0 ? 'is-valid' : ''}
                 placeholder='Ej: Augusto Peréz'
                 value={nombre}
-                maxlength="35"
+                maxLength="35"
                 onChange={e => dispatch(inputActions.setInputName(nombre.length > 35 ? e.target.value.slice(0, 35) : e.target.value))}
               ></Input>
               {
@@ -171,7 +171,7 @@ const Agregar = (props) => {
                 className={completarDatos && profesion.length === 0 ? 'is-invalid' : profesion.length > 0 ? 'is-valid' : ''}
                 placeholder='Científico de datos'
                 value={profesion}
-                maxlength="35"
+                maxLength="35"
                 onChange={e => dispatch(inputActions.setInputCareer(profesion.length > 35 ? e.target.value.slice(0, 35) : e.target.value))}
               ></Input>
               {
