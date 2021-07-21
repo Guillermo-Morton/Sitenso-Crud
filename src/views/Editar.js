@@ -7,6 +7,7 @@ import dataActions from '../redux/actions/selects/dataActions'
 
 import Swal from "sweetalert2"
 
+// ** Cambiamos los estilos del objeto Swal
 const customSwal = Swal.mixin({
   customClass: {
     confirmButton: 'btn btn-primary mx-1 px-3',
@@ -17,12 +18,13 @@ const customSwal = Swal.mixin({
 
 import { Link, useParams, withRouter } from 'react-router-dom'
 
+// ** Llamamos a axios y seteamos los valores URL
 const axios = require('axios')
 const URL = process.env.REACT_APP_API_URL
 const URL2 = process.env.REACT_APP_API_URL2
 const URL3 = process.env.REACT_APP_API_URL3
 
-
+// ** Funcion para editar desarrolladores de la base de datos
 const Editar = (props) => {
   const { id } = useParams()
   const devAeditar = useSelector(state => state.devs.editingDev)
@@ -33,6 +35,7 @@ const Editar = (props) => {
   const [completarDatos, setCompletarDatos] = useState(false)
   const handleSubmit = (e) => {
     e.preventDefault()
+    // ** Si los campos no estan vacios, avanzar
     if (
       dev.nombre !== ''
       && dev.puesto !== ''
@@ -40,6 +43,7 @@ const Editar = (props) => {
       && dev.tecnologia !== ''
     ) {
       setCompletarDatos(false)
+      // ** Peticion put a la URL
       axios.put(`${URL}/${id}`, {
         nombre: dev.nombre,
         puesto: dev.puesto,
@@ -53,7 +57,6 @@ const Editar = (props) => {
             "Intente de nuevo mas tarde",
             "error"
           )
-          props.history.push('/inicio:table')
         })
         .then((response) => {
           if (response.status === 200) {
@@ -62,16 +65,19 @@ const Editar = (props) => {
               "Se modificaron los datos",
               "success"
             )
+            // ** Redirigimos a la tabla 
             props.history.push('/inicio:table')
           }
         })
+      // ** Reseteamos los inputs
       dispatch(inputActions.resetInput())
     } else {
       setCompletarDatos(true)
     }
-
   }
+  // ** Funcion para traer los datos desde la api
   const loadData = () => {
+    // ** Aqui se piden los elementos para el select puesto
     dispatch(dataActions.fetchJobsPending())
     axios.get(URL2)
       .then(function (response) {
@@ -86,7 +92,7 @@ const Editar = (props) => {
         dispatch(dataActions.fetchJobsError(error))
         console.log(error)
       })
-
+    // ** Aqui se piden los elementos para el select tecnologia
     dispatch(dataActions.fetchTechsPending())
     axios.get(URL3)
       .then(function (response) {
@@ -101,7 +107,7 @@ const Editar = (props) => {
         dispatch(dataActions.fetchTechsError(error))
         console.log(error)
       })
-
+    // ** Aqui se piden los datos del desarrollador a editar
     axios.get(`${URL}/${id}`)
       .then(function (response) {
         // handle success
@@ -116,9 +122,11 @@ const Editar = (props) => {
 
 
   }
+  // ** Cargamos los datos justo al carcar el componente
   useEffect(() => {
     loadData()
   }, [])
+  // ** Seteamos los inputs con los datos del desarrollador a editar
   useEffect(() => {
     dispatch(inputActions.setInputName(devAeditar.nombre))
     dispatch(inputActions.setInputCareer(devAeditar.profesion))
@@ -145,13 +153,13 @@ const Editar = (props) => {
                 onChange={e => dispatch(inputActions.setInputName(dev.nombre && dev.nombre.length > 35 ? e.target.value.slice(0, 35) : e.target.value))}
               ></Input>
               {
-              dev.nombre && dev.nombre.length === 35 ? <Alert
-                className='pl-1 animate__animated animate__fadeInDown'
-                color="primary">
-                Máximo 35 caracteres
-              </Alert> : completarDatos && dev.nombre.length === 0 ? <Alert
-                className='pl-1 animate__animated animate__fadeInDown'
-                color="danger">Este campo es obligatorio</Alert> : ''
+                dev.nombre && dev.nombre.length === 35 ? <Alert
+                  className='pl-1 animate__animated animate__fadeInDown'
+                  color="primary">
+                  Máximo 35 caracteres
+                </Alert> : completarDatos && dev.nombre.length === 0 ? <Alert
+                  className='pl-1 animate__animated animate__fadeInDown'
+                  color="danger">Este campo es obligatorio</Alert> : ''
               }
             </FormGroup>
             <FormGroup className='my-3'>
@@ -179,14 +187,14 @@ const Editar = (props) => {
                 maxlength="35"
                 onChange={e => dispatch(inputActions.setInputCareer(dev.profesion.length > 35 ? e.target.value.slice(0, 35) : e.target.value))}
               ></Input>
-               {
-              dev.profesion && dev.profesion.length === 35 ? <Alert
-                className='pl-1 animate__animated animate__fadeInDown'
-                color="primary">
-                Máximo 35 caracteres
-              </Alert> : completarDatos && dev.profesion.length === 0 ? <Alert
-                className='pl-1 animate__animated animate__fadeInDown'
-                color="danger">Este campo es obligatorio</Alert> : ''
+              {
+                dev.profesion && dev.profesion.length === 35 ? <Alert
+                  className='pl-1 animate__animated animate__fadeInDown'
+                  color="primary">
+                  Máximo 35 caracteres
+                </Alert> : completarDatos && dev.profesion.length === 0 ? <Alert
+                  className='pl-1 animate__animated animate__fadeInDown'
+                  color="danger">Este campo es obligatorio</Alert> : ''
               }
             </FormGroup>
             <FormGroup className='my-3'>

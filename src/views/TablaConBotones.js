@@ -34,10 +34,13 @@ import {
 
 const TablaConBotones = () => {
 
+  // ** Seteamos la URL, Axios, Dispatch y el array desarrolladores
   const URL = process.env.REACT_APP_API_URL
   const axios = require('axios')
   const devs = useSelector(state => state.devs.devs)
   const dispatch = useDispatch()
+
+  // ** Inicializamos states locales para manejar datos dentro del componente
   const [checked, setChecked] = useState(true)
   const [isHidden, setIsHidden] = useState(true)
   const [selectedRows, setSelectedRows] = useState([])
@@ -52,12 +55,13 @@ const TablaConBotones = () => {
       }} />
     </div>
   ))
-
+  
+  // ** Funcion que maneja los cambios en las filas seleccionadas
   const handleChange = (state) => {
     setSelectedRows(state.selectedRows)
     setChecked(true)
   }
-
+  // ** Hacemos un get a la api y seteamos los cambios en el store
   const loadData = () => {
     dispatch(devActions.fetchDevsPending())
     axios.get(URL)
@@ -74,6 +78,7 @@ const TablaConBotones = () => {
         console.log(error)
       })
   }
+  // ** Funcion para eliminar el desarrollador seleccionado
   const deleteDev = (id) => {
     customSwal.fire({
       title: "¿Eliminar?",
@@ -94,7 +99,7 @@ const TablaConBotones = () => {
     }).then(() => loadData())
 
   }
-
+  // ** Funcion para eliminado multiple
   const multipleDelete = (array) => {
     customSwal.fire({
       title: "¿Eliminar multiple?",
@@ -121,7 +126,7 @@ const TablaConBotones = () => {
     })
 
   }
-
+  // ** Configuramos las columnas de nuestra data table
   const columnas = [
     {
       name: 'NOMBRE',
@@ -175,24 +180,29 @@ const TablaConBotones = () => {
       }
     }
   ]
-
+  // ** Cargamos los datos en la tabla apenas se inicia el componente
   useEffect(() => {
     loadData()
   }, [])
+
   // ** States
   const [currentPage, setCurrentPage] = useState(0)
   const [previousPage, setPreviousPage] = useState(-1)
   const [entrada1, setEntrada1] = useState(1)
   const [entrada2, setEntrada2] = useState(4)
+
   // ** Function to handle Pagination
   const handlePagination = page => {
     setCurrentPage(page.selected)
   }
+
+  // ** Effect que solo actua en la actualizacion
   const isInitialMount = useRef(true)
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false
     } else {
+      // ** Algoritmo para manejar el mensaje de que entradas estamos viendo en la trabla (Mostrando entradas de 1 a 4)
       if (currentPage === previousPage) {
         setEntrada1(entrada1 - 4)
         setEntrada2(entrada2 - 4)
@@ -209,6 +219,7 @@ const TablaConBotones = () => {
       setPreviousPage(currentPage - 1)
     }
   }, [currentPage])
+
   // ** Custom Pagination
   const CustomPagination = () => (
     <ReactPaginate
@@ -234,13 +245,12 @@ const TablaConBotones = () => {
       containerClassName='pagination react-paginate separated-pagination pagination-sm justify-content-end pr-1 mt-1'
     />
   )
-
+  // ** Modificar los estilos de nuestra data table
   createTheme('solarized', {
     divider: {
       default: '#fff'
     }
   })
-
   const customStyles = {
     headCells: {
       style: {
@@ -267,7 +277,7 @@ const TablaConBotones = () => {
             </Link>
           </div>
         </CardHeader>
-        <CardBody className={`dataTable ${selectedRows.length > 0 ? 'grow' : ''}`}>
+        <CardBody className='dataTable'>
           <DataTable
             noHeader
             pagination

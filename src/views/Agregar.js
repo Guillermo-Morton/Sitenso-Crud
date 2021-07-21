@@ -6,6 +6,7 @@ import dataActions from '../redux/actions/selects/dataActions'
 
 import Swal from "sweetalert2"
 
+// ** Cambiamos los estilos del objeto Swal
 const customSwal = Swal.mixin({
   customClass: {
     confirmButton: 'btn btn-primary mx-1 px-3',
@@ -16,11 +17,13 @@ const customSwal = Swal.mixin({
 
 import { Link, withRouter } from 'react-router-dom'
 
+// ** Llamamos a axios y seteamos los valores URL
 const axios = require('axios')
 const URL = process.env.REACT_APP_API_URL
 const URL2 = process.env.REACT_APP_API_URL2
 const URL3 = process.env.REACT_APP_API_URL3
 
+// ** Funcion para agregar desarrolladores a la base de datos
 const Agregar = (props) => {
   const dev = useSelector(state => state.inputs)
   const nombre = useSelector(state => state.inputs.nombre)
@@ -33,6 +36,7 @@ const Agregar = (props) => {
   const [completarDatos, setCompletarDatos] = useState(false)
   const handleSubmit = (e) => {
     e.preventDefault()
+    // ** Si los campos no estan vacios, avanzar
     if (
       nombre !== ''
       && puesto !== ''
@@ -40,6 +44,7 @@ const Agregar = (props) => {
       && tecnologia !== ''
     ) {
       setCompletarDatos(false)
+      // ** Peticion post a la URL
       axios.post(URL, {
         nombre: dev.nombre,
         puesto: dev.puesto,
@@ -53,7 +58,6 @@ const Agregar = (props) => {
             "Intente de nuevo mas tarde",
             "error"
           )
-          props.history.push('/inicio:table')
         })
         .then((response) => {
           if (response.status === 201) {
@@ -62,15 +66,19 @@ const Agregar = (props) => {
               "Se cargaron correctamente los datos",
               "success"
             )
+            // ** Redirigimos a la tabla 
             props.history.push('/inicio:table')
           }
         })
+        // ** Reseteamos los inputs
       dispatch(inputActions.resetInput())
     } else {
       setCompletarDatos(true)
     }
   }
+  // ** Funcion para traer los datos desde la api
   const loadData = () => {
+    // ** Aqui se piden los elementos para el select puesto
     dispatch(dataActions.fetchJobsPending())
     axios.get(URL2)
       .then(function (response) {
@@ -85,7 +93,7 @@ const Agregar = (props) => {
         dispatch(dataActions.fetchJobsError(error))
         console.log(error)
       })
-
+    // ** Aqui se piden los elementos para el select tecnologia
     dispatch(dataActions.fetchTechsPending())
     axios.get(URL3)
       .then(function (response) {
@@ -101,6 +109,7 @@ const Agregar = (props) => {
         console.log(error)
       })
   }
+  // ** Cargamos los datos y reseteamos los inputs justo al carcar el componente
   useEffect(() => {
     loadData()
     dispatch(inputActions.resetInput())

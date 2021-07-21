@@ -119,7 +119,7 @@ const Router = () => {
       const routerProps = {}
 
       return (
-        <Route path={LayoutPaths} key={index}>
+        <Route exact path={LayoutPaths} key={index}>
           <LayoutTag
             routerProps={routerProps}
             layout={layout}

@@ -1,8 +1,5 @@
 import { lazy } from 'react'
 
-// ** Document title
-const TemplateTitle = '%s - Vuexy React Admin Template'
-
 // ** Default Route
 const DefaultRoute = '/inicio'
 
@@ -39,4 +36,4 @@ const Routes = [
   }
 ]
 
-export { DefaultRoute, TemplateTitle, Routes }
+export { DefaultRoute, Routes }
