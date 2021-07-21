@@ -33,8 +33,8 @@ const NavB = () => {
             className={`animate__animated ${classnames({
               'd-none': (isHidden && !location.pathname.includes(item.id)),
               'active btn-link disabled': location.pathname.includes('editar') && item.title ===  'Agregar' ? true : location.pathname === item.navLink,
-              animate__fadeInLeft: location.pathname.includes(item.id),
-              'animate__fadeOutRight btn-link disabled': !location.pathname.includes(item.id)
+              animate__fadeInLeft: location.pathname.includes(item.id) ? true : location.pathname.includes('editar'),
+              'animate__fadeOutRight btn-link disabled': location.pathname.includes(item.id) ? false : !location.pathname.includes('editar')
               
             })}`}
             key={item.id}
