@@ -2,6 +2,9 @@
 import { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom'
 
+import { createBrowserHistory } from 'history'
+export const history = createBrowserHistory({forceRefresh:true})
+
 // ** Redux Imports
 import { Provider } from 'react-redux'
 import { store } from './redux/storeConfig/store'

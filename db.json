@@ -1,0 +1,117 @@
+{
+  "sitenso": [
+    {
+      "nombre": "Mario Campbell",
+      "puesto": "ScrumMaster",
+      "profesion": "Diseñador grafico",
+      "tecnologia": "Laravel",
+      "id": 1
+    },
+    {
+      "nombre": "Nicolás Berdú",
+      "puesto": "FullStack",
+      "profesion": "Ingeniero en Sistemas",
+      "tecnologia": "VueJs",
+      "id": 2
+    },
+    {
+      "nombre": "Rocio Pereyra",
+      "puesto": "Frontend",
+      "profesion": "FrontEnd developer",
+      "tecnologia": "JavaScript",
+      "id": 6
+    },
+    {
+      "nombre": "Rosa Ferreiro",
+      "puesto": "Backend",
+      "profesion": "Licenciada en programacion",
+      "tecnologia": "MySQL",
+      "id": 7
+    },
+    {
+      "nombre": "Rita Zabala",
+      "puesto": "Frontend",
+      "profesion": "Ingeniera en sistemas",
+      "tecnologia": "C++",
+      "id": 8
+    },
+    {
+      "nombre": "Camila San Martin",
+      "puesto": "Frontend",
+      "profesion": "Desarrolladora autodidacta",
+      "tecnologia": "Angular",
+      "id": 9
+    },
+    {
+      "nombre": "Otto Morton",
+      "puesto": "Backend",
+      "profesion": "Dentista",
+      "tecnologia": "C++",
+      "id": 10
+    }
+  ],
+  "puestos": [
+    {
+      "puesto": "Frontend",
+      "id": "GADSAD"
+    },
+    {
+      "puesto": "Backend",
+      "id": "FASDSF"
+    },
+    {
+      "puesto": "ScrumMaster",
+      "id": "VXZSAD"
+    },
+    {
+      "puesto": "FullStack",
+      "id": "VAGAWD"
+    }
+  ],
+  "tecnologias": [
+    {
+      "tecnologia": "React",
+      "id": "ASFCXV"
+    },
+    {
+      "tecnologia": "Laravel",
+      "id": "MUWJFP"
+    },
+    {
+      "tecnologia": "VueJs",
+      "id": "PLQSMD"
+    },
+    {
+      "tecnologia": "Angular",
+      "id": "ZTQOSN"
+    },
+    {
+      "tecnologia": "JavaScript",
+      "id": "HASDSA"
+    },
+    {
+      "tecnologia": "NodeJs",
+      "id": "KLJQND"
+    },
+    {
+      "tecnologia": "MySQL",
+      "id": "DSADGA"
+    },
+    {
+      "tecnologia": "Java",
+      "id": "DSAXCW"
+    },
+    {
+      "tecnologia": "C",
+      "id": "GASACD"
+    },
+    {
+      "tecnologia": "C++",
+      "id": "NADWAD"
+    },
+    {
+      "tecnologia": "C#",
+      "id": "DASDFA"
+    }
+  ]
+}
