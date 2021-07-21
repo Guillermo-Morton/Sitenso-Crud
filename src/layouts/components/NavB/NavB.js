@@ -12,7 +12,7 @@ const NavB = () => {
   const [isHidden, setIsHidden] = useState(true)
   useEffect(() => {
     document.getElementById('nav').className = ''
-  }, [])
+  }, [location])
   return (
     <div className='container'>
       <NavBar>

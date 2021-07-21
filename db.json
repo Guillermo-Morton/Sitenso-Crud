@@ -15,25 +15,46 @@
       "id": 2
     },
     {
-      "nombre": "Carlos Soria",
-      "profesion": "Ingeniero en Sistemas",
-      "puesto": "Fullstack",
-      "tecnologia": "Nodejs",
-      "id": 3
-    },
-    {
-      "nombre": "Guillermo Morton",
-      "profesion": "Desarrollador Fullstack",
-      "puesto": "Fullstack",
-      "tecnologia": "React",
-      "id": 5
-    },
-    {
       "nombre": "Rocio Pereyra",
       "puesto": "Frontend",
       "profesion": "FrontEnd developer",
       "tecnologia": "JavaScript",
       "id": 6
+    },
+    {
+      "nombre": "Rosa Ferreiro",
+      "puesto": "Backend",
+      "profesion": "Licenciada en programacion",
+      "tecnologia": "MySQL",
+      "id": 7
+    },
+    {
+      "nombre": "Raul Zabala",
+      "puesto": "Frontend",
+      "profesion": "Ingeniero en sistemas",
+      "tecnologia": "C++",
+      "id": 8
+    },
+    {
+      "nombre": "Camila San Martin",
+      "puesto": "Frontend",
+      "profesion": "Desarrolladora autodidacta",
+      "tecnologia": "Angular",
+      "id": 9
+    },
+    {
+      "nombre": "Otto Morton",
+      "puesto": "Backend",
+      "profesion": "Dentista",
+      "tecnologia": "C++",
+      "id": 10
+    },
+    {
+      "nombre": "asasd",
+      "puesto": "ScrumMaster",
+      "profesion": "asdsad",
+      "tecnologia": "Laravel",
+      "id": 11
     }
   ],
   "puestos": [
@@ -74,6 +95,30 @@
     {
       "tecnologia": "JavaScript",
       "id": "HASDSA"
+    },
+    {
+      "tecnologia": "NodeJs",
+      "id": "KLJQND"
+    },
+    {
+      "tecnologia": "MySQL",
+      "id": "DSADGA"
+    },
+    {
+      "tecnologia": "Java",
+      "id": "DSAXCW"
+    },
+    {
+      "tecnologia": "C",
+      "id": "GASACD"
+    },
+    {
+      "tecnologia": "C++",
+      "id": "NADWAD"
+    },
+    {
+      "tecnologia": "C#",
+      "id": "DASDFA"
     }
   ]
 }

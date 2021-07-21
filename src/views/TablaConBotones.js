@@ -43,9 +43,8 @@ const BootstrapCheckbox = forwardRef(({ onClick, ...rest }, ref) => (
 const TablaConBotones = () => {
   const URL = process.env.REACT_APP_API_URL
   const axios = require('axios')
-  const devs = useSelector(state => state.devs)
+  const devs = useSelector(state => state.devs.devs)
   const dispatch = useDispatch()
-
   const [checked, setChecked] = useState(true)
   const [selectedRows, setSelectedRows] = useState([])
 
@@ -171,16 +170,40 @@ const TablaConBotones = () => {
       }
     }
   ]
-
+  
   useEffect(() => {
     loadData()
   }, [])
   // ** States
   const [currentPage, setCurrentPage] = useState(0)
+  const [previousPage, setPreviousPage] = useState(-1)
+  const [entrada1, setEntrada1] = useState(1)
+  const [entrada2, setEntrada2] = useState(4)
   // ** Function to handle Pagination
   const handlePagination = page => {
     setCurrentPage(page.selected)
   }
+  const isInitialMount = useRef(true)
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      if (currentPage === previousPage) {
+        setEntrada1(entrada1 - 4)
+        setEntrada2(entrada2 - 4)
+      } else if (currentPage < previousPage) {
+        setEntrada1(entrada1 - 8)
+        setEntrada2(entrada2 - 8)
+      } else if (currentPage > previousPage + 2) {
+        setEntrada1(entrada1 + 8)
+        setEntrada2(entrada2 + 8)
+      } else {
+        setEntrada1(entrada1 + 4)
+        setEntrada2(entrada2 + 4)
+      }
+        setPreviousPage(currentPage - 1)
+    }
+  }, [currentPage])
   // ** Custom Pagination
   const CustomPagination = () => (
     <ReactPaginate
@@ -188,10 +211,10 @@ const TablaConBotones = () => {
       nextLabel=''
       forcePage={currentPage}
       onPageChange={page => handlePagination(page)}
-      pageCount={devs.length}
+      pageCount={devs.length / 4 || 1}
       breakLabel='...'
       pageRangeDisplayed={2}
-      marginPagesDisplayed={2}
+      marginPagesDisplayed={-1}
       activeClassName='active'
       pageClassName='page-item'
       breakClassName='page-item'
@@ -250,7 +273,7 @@ const TablaConBotones = () => {
             paginationDefaultPage={currentPage + 1}
             paginationComponent={CustomPagination}
             paginationPerPage={4}
-            data={devs.devs}
+            data={devs}
             selectableRowsComponent={BootstrapCheckbox}
             theme="solarized"
             customStyles={customStyles}
@@ -258,9 +281,12 @@ const TablaConBotones = () => {
             clearSelectedRows={checked}
           />
           <div className={`d-flex btnEliminarWrapper ${checked ? '' : 'd-none'}`}>
-            <Button onClick={() => multipleDelete(selectedRows)} className={`btnEliminar animate__animated  ${selectedRows.length > 0 ? 'animate__fadeInDown' : 'animate__fadeOutUp'}`} outline color='primary'><Trash size={15} /><span className='align-middle ml-50'>Eliminar</span></Button>
+          <span className='entradas'>{`Mostrando de ${entrada1} a ${entrada2} entradas`}</span>
+            <Button onClick={() => multipleDelete(selectedRows)}
+             className={`btnEliminar animate__animated  ${selectedRows.length > 0 ? 'animate__fadeInLeft' : 'animate__fadeOutLeft'}`}
+             outline color='primary'><Trash size={15} /><span className='align-middle ml-50'>Eliminar</span></Button>
           </div>
-
+        
         </CardBody>
       </Card>
     </Fragment>
