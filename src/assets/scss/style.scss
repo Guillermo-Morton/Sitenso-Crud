@@ -67,14 +67,14 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	position: absolute;
 	top: 6.6rem;
 	padding: 0.8rem;
-	@media (max-width: 440px){
+	@media (max-width: 768px){
 		top: 32rem;
 		margin: 1rem 1rem 0 ;
 		justify-self: center;
 	}
 }
 .btnEliminarWrapper{
-	@media (max-width: 440px){
+	@media (max-width: 768px){
 		justify-content: center;
 		height: 8rem;
 	}
