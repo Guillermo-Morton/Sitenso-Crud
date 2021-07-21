@@ -48,6 +48,13 @@
       "profesion": "Dentista",
       "tecnologia": "C++",
       "id": 10
+    },
+    {
+      "nombre": "Sapo",
+      "puesto": "Backend",
+      "profesion": "asdasd",
+      "tecnologia": "Laravel",
+      "id": 11
     }
   ],
   "puestos": [
