@@ -53,7 +53,7 @@ const Agregar = (props) => {
             "Intente de nuevo mas tarde",
             "error"
           )
-          props.history.push('/inicio:tabla')
+          props.history.push('/inicio:table')
         })
         .then((response) => {
           if (response.status === 201) {
@@ -62,7 +62,7 @@ const Agregar = (props) => {
               "Se cargaron correctamente los datos",
               "success"
             )
-            props.history.push('/inicio:tabla')
+            props.history.push('/inicio:table')
           }
         })
       dispatch(inputActions.resetInput())

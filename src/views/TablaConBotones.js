@@ -32,21 +32,26 @@ import {
   Button
 } from 'reactstrap'
 
-// ** Bootstrap Checkbox Component
-const BootstrapCheckbox = forwardRef(({ onClick, ...rest }, ref) => (
-  <div className='custom-control custom-checkbox'>
-    <input type='checkbox' className='custom-control-input' ref={ref} {...rest} />
-    <label className='custom-control-label' onClick={onClick} />
-  </div>
-))
-
 const TablaConBotones = () => {
+
   const URL = process.env.REACT_APP_API_URL
   const axios = require('axios')
   const devs = useSelector(state => state.devs.devs)
   const dispatch = useDispatch()
   const [checked, setChecked] = useState(true)
+  const [isHidden, setIsHidden] = useState(true)
   const [selectedRows, setSelectedRows] = useState([])
+
+  // ** Bootstrap Checkbox Component
+  const BootstrapCheckbox = forwardRef(({ onClick, ...rest }, ref) => (
+    <div className='custom-control custom-checkbox'>
+      <input type='checkbox' className='custom-control-input' ref={ref} {...rest} />
+      <label className='custom-control-label' onClick={() => {
+        onClick()
+        setIsHidden(false)
+      }} />
+    </div>
+  ))
 
   const handleChange = (state) => {
     setSelectedRows(state.selectedRows)
@@ -145,7 +150,7 @@ const TablaConBotones = () => {
     {
       name: 'ACCIONES',
       allowOverflow: true,
-      center:true,
+      center: true,
       width: '10%',
       cell: row => {
         return (
@@ -170,7 +175,7 @@ const TablaConBotones = () => {
       }
     }
   ]
-  
+
   useEffect(() => {
     loadData()
   }, [])
@@ -201,7 +206,7 @@ const TablaConBotones = () => {
         setEntrada1(entrada1 + 4)
         setEntrada2(entrada2 + 4)
       }
-        setPreviousPage(currentPage - 1)
+      setPreviousPage(currentPage - 1)
     }
   }, [currentPage])
   // ** Custom Pagination
@@ -240,12 +245,12 @@ const TablaConBotones = () => {
     headCells: {
       style: {
         background: '#F3F2F7',
-        padding:'0 3rem'
+        padding: '0 3rem'
       }
     },
     cells: {
       style: { // override the cell padding for data cells
-        padding:'0 3rem'
+        padding: '0 3rem'
       }
     }
   }
@@ -281,12 +286,12 @@ const TablaConBotones = () => {
             clearSelectedRows={checked}
           />
           <div className={`d-flex btnEliminarWrapper ${checked ? '' : 'd-none'}`}>
-          <span className='entradas'>{`Mostrando de ${entrada1} a ${entrada2} entradas`}</span>
+            <span className='entradas'>{`Mostrando de ${entrada1} a ${entrada2} entradas`}</span>
             <Button onClick={() => multipleDelete(selectedRows)}
-             className={`btnEliminar animate__animated  ${selectedRows.length > 0 ? 'animate__fadeInLeft' : 'animate__fadeOutLeft'}`}
-             outline color='primary'><Trash size={15} /><span className='align-middle ml-50'>Eliminar</span></Button>
+              className={`btnEliminar animate__animated ${isHidden ? 'd-none' : ''} ${selectedRows.length > 0 ? 'animate__fadeInLeft' : 'animate__fadeOutLeft btn-link disabled'}`}
+              outline color='primary'><Trash size={15} /><span className='align-middle ml-50'>Eliminar</span></Button>
           </div>
-        
+
         </CardBody>
       </Card>
     </Fragment>

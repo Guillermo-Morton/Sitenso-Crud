@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pending: false,
-        devs: action.devs
+        devs: action.devs.reverse()
       }
     case actionTypes.FETCH_DEVS_ERROR:
       return {

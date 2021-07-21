@@ -29,9 +29,9 @@
       "id": 7
     },
     {
-      "nombre": "Raul Zabala",
+      "nombre": "Rita Zabala",
       "puesto": "Frontend",
-      "profesion": "Ingeniero en sistemas",
+      "profesion": "Ingeniera en sistemas",
       "tecnologia": "C++",
       "id": 8
     },
@@ -48,13 +48,6 @@
       "profesion": "Dentista",
       "tecnologia": "C++",
       "id": 10
-    },
-    {
-      "nombre": "asasd",
-      "puesto": "ScrumMaster",
-      "profesion": "asdsad",
-      "tecnologia": "Laravel",
-      "id": 11
     }
   ],
   "puestos": [
