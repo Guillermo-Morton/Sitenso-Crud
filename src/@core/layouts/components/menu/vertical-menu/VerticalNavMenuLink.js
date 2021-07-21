@@ -64,6 +64,7 @@ const VerticalNavMenuLink = ({
       setActiveItem(currentActiveItem)
       const arr = searchParents(navigation, currentURL)
       setGroupActive([...arr])
+      console.log(item)
     }
   }, [location])
 
@@ -72,7 +73,7 @@ const VerticalNavMenuLink = ({
       className={classnames({
         'nav-item': !item.children,
         disabled: item.disabled,
-        active: item.navLink === activeItem
+        active: location.pathname.includes('editar') && item.title ===  'Agregar' ? true : location.pathname === item.navLink
       })}
     >
       <LinkTag
@@ -104,7 +105,7 @@ const VerticalNavMenuLink = ({
         }}
       >
         {item.icon}
-        <span className='menu-item text-truncate'>{item.title}</span>
+        <span className='menu-item text-truncate'>{location.pathname.includes('editar') && item.title === 'Agregar' ? 'Editar' : item.title }</span>
 
         {item.badge && item.badgeText ? (
           <Badge className='ml-auto mr-1' color={item.badge} pill>

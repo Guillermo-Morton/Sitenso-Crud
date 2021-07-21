@@ -32,7 +32,7 @@ Necesitaras estas instalaciones: NodeJS, JSON-server.
 _Procederemos a clonar el repositorio, e instalar las distintas dependencias_
 
 ```
-Git clone https://github.com/Guillermo-Morton/RollingNews.git
+Git clone https://github.com/Guillermo-Morton/Sitenso-Crud.git
 ```
 
 _Instalar nuevamente npm con el comando: npm install._
